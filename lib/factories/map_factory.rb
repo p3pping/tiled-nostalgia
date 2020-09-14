@@ -1,5 +1,5 @@
-require_relative '../map.rb'
-require_relative '../../utilities/file_parsers/csv_map_parser.rb'
+require_relative '../game_objects/map.rb'
+require_relative '../utilities/file_parsers/csv_map_parser.rb'
 
 class MapFactory
   def self.load(file_path, tileset, parser: CsvMapParser.new)
