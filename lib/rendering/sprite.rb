@@ -1,10 +1,9 @@
 class Sprite
-  attr_reader :position, :layer
+  attr_reader :position
 
-  def initialize(renderable, position, layer: 0)
+  def initialize(renderable, position)
     @renderable = renderable
     @position = position
-    @layer = layer
   end
 
   def change_position(position)
@@ -16,6 +15,6 @@ class Sprite
   end
 
   def draw
-    @renderable.draw(@position.x, @position.y, @layer)
+    @renderable.draw(@position.x, @position.y)
   end
 end
