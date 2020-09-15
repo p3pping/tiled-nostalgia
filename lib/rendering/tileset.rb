@@ -1,12 +1,10 @@
-require 'gosu'
-
 class Tileset
   attr_reader :tile_width, :tile_height, :image
-  def initialize(tile_width, tile_height, image)
+  def initialize(tile_width, tile_height, tiles)
     @tile_width = tile_width
     @tile_height = tile_height
     @image = image
-    @tiles = Gosu::Image.load_tiles(@image, tile_width, tile_height)
+    @tiles = tiles
   end
 
   def draw(tile_id, x_position, y_position, layer: 0)
