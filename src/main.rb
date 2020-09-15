@@ -1,8 +1,4 @@
-require 'gosu'
-require_relative '../lib/factories/window_factory.rb'
-require_relative '../lib/factories/tileset_factory.rb'
-require_relative '../lib/factories/map_factory.rb'
-require_relative '../lib/factories/sprite_factory.rb'
+require_relative '../lib/factories/factories.rb'
 require_relative '../lib/utilities/inputs.rb'
 
 tileset = Factories::Tileset.create(16, 16, './assets/default_tileset.png')
