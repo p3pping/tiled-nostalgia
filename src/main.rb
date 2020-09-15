@@ -16,5 +16,4 @@ window.on_input_pressed = Proc.new do |input_id|
 end
 
 window.draw = -> { map.draw and sprite.draw }
-
 window.show
