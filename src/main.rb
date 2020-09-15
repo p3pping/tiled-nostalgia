@@ -12,6 +12,8 @@ window.on_input_pressed = Proc.new do |input_id|
       sprite.change_position(sprite.position + Vector2D.new(0,-1))
     when INPUTS::S_KEY
       sprite.change_position(sprite.position + Vector2D.new(0,1))
+    when INPUTS::ESC_KEY
+      window.close!
   end
 end
 
