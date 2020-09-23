@@ -11,6 +11,10 @@ class Window < Gosu::Window
     @context = context
   end
 
+  def set_camera(camera)
+    @camera = camera
+  end
+
   private
 
   def update
@@ -23,8 +27,16 @@ class Window < Gosu::Window
 
   def draw
     super
-    Gosu.scale(@context.scale_x, @context.scale_y) do
-      @draw.call if @draw
+    if @camera.nil?
+      Gosu.scale(@context.scale_x, @context.scale_y) do
+        @draw.call if @draw
+      end
+    else
+      @camera.render(@context) do
+        Gosu.scale(@context.scale_x, @context.scale_y) do
+          @draw.call if @draw
+        end
+      end
     end
   end
 
