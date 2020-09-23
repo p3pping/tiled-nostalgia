@@ -1,10 +1,14 @@
 require 'gosu'
 
 class Window < Gosu::Window
-  attr_writer :update, :draw, :on_input_pressed, :on_input_released, :on_close
-  def initialize(width, height, **options)
-    super(width, height, options)
+  attr_writer *%i[update draw on_input_pressed on_input_released on_close context]
+
+  def initialize(context, **options)
+    super(context.width, context.height, options)
     self.caption = options[:caption] if options.key?(:caption)
+
+    raise ArgumentError, "Context cannot be nil." unless context
+    @context = context
   end
 
   private
@@ -19,7 +23,9 @@ class Window < Gosu::Window
 
   def draw
     super
-    @draw.call if @draw
+    Gosu.scale(@context.scale_x, @context.scale_y) do
+      @draw.call if @draw
+    end
   end
 
   def button_up(id)
