@@ -4,14 +4,14 @@ require 'gosu'
 class Camera
   attr_reader :position, :rect, :center
 
-  def initialize(position, rect, center: Vector2D.new(0, 0))
+  def initialize(position, rect, center: Vector2D.new(rect.width/2, rect.height/2))
     @position = position
     @rect = rect
     @center = center
   end
 
   def set_position(position)
-    @position = Vector2D.new(position.x, position.y)
+    @position = Vector2D.new(position.x, position.y) * -1
   end
 
   def set_center(center)
@@ -28,11 +28,9 @@ class Camera
   def render(context)
     return unless block_given?
 
-    Gosu.clip_to(
-      (@position.x * context.scale_x) + @rect.left,
-      (@position.y * context.scale_y)  + @rect.top,
-      @rect.width,
-      @rect.height,
+    Gosu.translate(
+      ((@position.x * context.scale_x) + @center.x),
+      ((@position.y * context.scale_y) + @center.y)
     ) do
       yield
     end

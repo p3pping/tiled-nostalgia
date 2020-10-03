@@ -17,13 +17,16 @@ window.on_input_pressed = Proc.new do |input_id|
   case input_id
     when INPUTS::W_KEY
       sprite.change_position(sprite.position + Vector2D.new(0,-1))
-      camera.set_position(camera.position + Vector2D.new(0,-1))
     when INPUTS::S_KEY
-      sprite.change_position(sprite.position + Vector2D.new(0,1))
-      camera.set_position(camera.position + Vector2D.new(0,1))
+      sprite.change_position(sprite.position + Vector2D.new(0, 1))
+    when INPUTS::A_KEY
+      sprite.change_position(sprite.position + Vector2D.new(-1, 0))
+    when INPUTS::D_KEY
+      sprite.change_position(sprite.position + Vector2D.new(1, 0))
     when INPUTS::ESC_KEY
       window.close!
   end
+  camera.set_position(sprite.position)
 end
 
 window.draw = -> { map.draw and sprite.draw }
