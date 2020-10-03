@@ -1,7 +1,7 @@
 require 'gosu'
 require_relative '../rendering/renderable.rb'
 require_relative '../rendering/sprite.rb'
-require_relative '../utilities/vector2d.rb'
+require_relative '../math/vector2d.rb'
 
 module Factories
   class Sprite
