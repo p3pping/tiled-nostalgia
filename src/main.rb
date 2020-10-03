@@ -12,7 +12,6 @@ tileset = Factories::Tileset.create(16, 16, './assets/default_tileset.png')
 map     = Factories::Map.create('assets/map.csv', tileset)
 sprite  = Factories::Sprite.create('./assets/default_sprite.png', 16, 16)
 
-
 window.on_input_pressed = Proc.new do |input_id|
   case input_id
     when INPUTS::W_KEY
