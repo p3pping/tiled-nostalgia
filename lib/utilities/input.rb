@@ -1,19 +1,21 @@
 class Input
-  @@pressed = []
-
-  def self.pressed(input)
-    @@pressed << input
+  def initialize()
+    @pressed = []
   end
 
-  def self.pressing?(input)
-    @@pressed.include?(input)
+  def pressed(input)
+    @pressed << input
   end
 
-  def self.released(input)
-    @@pressed.delete(input)
+  def pressing?(input)
+    @pressed.include?(input)
   end
 
-  def self.released?(input)
+  def released(input)
+    @pressed.delete(input)
+  end
+
+  def released?(input)
     !pressing(input)
   end
 end
