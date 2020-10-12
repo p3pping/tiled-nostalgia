@@ -1,7 +1,7 @@
 class TreeNode < SimpleDelegator
   attr_reader :parent
 
-  def initialize(object, name)
+  def initialize(object)
     super(object)
 
     @children = []
@@ -12,6 +12,7 @@ class TreeNode < SimpleDelegator
     raise ArgumentError, "Parent cannot be its self" if node == self
     return if @parent == node
 
+    @parent = node
     @parent << self
     node
   end
