@@ -20,5 +20,23 @@ RSpec.describe TreeNode do
         expect{ subject }.to change { child.parent }.to be(root)
       end
     end
+
+    context 'given the root is already the parent node,' do
+      before(:each) do
+        root.add_child(child)
+      end
+
+      it 'the roots node children should not change.' do
+        expect{ subject }.not_to change { child.children.count }
+      end
+    end
+
+    context 'given the node is being added to its self,' do
+      subject { root.add_child(root) }
+
+      it 'an error should be raised.' do
+        expect{ subject }.to raise_error(ArgumentError)
+      end
+    end
   end
 end

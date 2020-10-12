@@ -9,6 +9,7 @@ class TreeNode < SimpleDelegator
   end
 
   def parent=(node)
+    @parent = nil and return if node.nil?
     raise ArgumentError, "Parent cannot be its self" if node == self
     return if @parent == node
 
@@ -33,6 +34,7 @@ class TreeNode < SimpleDelegator
 
   def remove_child(node)
     @children.delete(node) if @children.include?(node)
+    node.parent = nil
     node
   end
 
