@@ -3,8 +3,8 @@ require_relative '../../../lib/utilities/tree_node.rb'
 
 RSpec.describe TreeNode do
   describe 'When adding a child node to root node,' do
-    let(:root) { TreeNode.new(Object.new) }
-    let(:child) { TreeNode.new(Object.new) }
+    let(:root) { TreeNode.new('root') }
+    let(:child) { TreeNode.new('child') }
     subject { root.add_child(child) }
 
     context 'given a root node,' do

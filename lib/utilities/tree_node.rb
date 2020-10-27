@@ -1,9 +1,8 @@
-class TreeNode < SimpleDelegator
-  attr_reader :parent
+class TreeNode
+  attr_reader :parent, :name
 
-  def initialize(object)
-    super(object)
-
+  def initialize(name)
+    @name=name
     @children = []
     @parent = nil
   end
@@ -40,5 +39,16 @@ class TreeNode < SimpleDelegator
 
   def children
     [*@children]
+  end
+
+  def find(path)
+    final_node = path.index('/').nil?
+    if final_node
+      destination_nodes = children.select { |child| child.name == path}
+      destination_nodes.any? ? destination_nodes[0] : nil
+    else
+      delimiter_index = path.index('/')
+      children.map { |child| child.find(path[delimiter_index+1...]) }.compact
+    end
   end
 end
