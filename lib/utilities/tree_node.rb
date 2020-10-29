@@ -51,4 +51,16 @@ class TreeNode
       children.map { |child| child.find(path[delimiter_index+1...]) }.compact
     end
   end
+
+  def root
+    find_root_of(self)
+  end
+
+  protected
+
+  def find_root_of(node=self)
+    return node if node.parent.nil?
+
+    find_root_of(node.parent)
+  end
 end
